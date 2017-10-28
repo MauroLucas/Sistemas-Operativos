@@ -2,17 +2,17 @@ package modelo;
 
 public class Proceso {
 	
-	private int cantCPU1;
+	private int cputime;
 	private int cantBloqueo;
 	private int cantCPU2;
 	private boolean ejecutando;
 	private boolean bloqueado;
 	private boolean terminado;
 	
-	public Proceso(int cantCPU1, int cantBloqueo, int cantCPU2, boolean ejecutando, boolean bloqueado,
+	public Proceso(int cputime, int cantBloqueo, int cantCPU2, boolean ejecutando, boolean bloqueado,
 			boolean terminado) {
 		super();
-		this.cantCPU1 = cantCPU1;
+		this.cputime = cputime;
 		this.cantBloqueo = cantBloqueo;
 		this.cantCPU2 = cantCPU2;
 		this.ejecutando = ejecutando;
@@ -20,12 +20,12 @@ public class Proceso {
 		this.terminado = terminado;
 	}
 
-	public int getCantCPU1() {
-		return cantCPU1;
+	public int getCputime() {
+		return cputime;
 	}
 
-	public void setCantCPU1(int cantCPU1) {
-		this.cantCPU1 = cantCPU1;
+	public void setCputime(int cputime) {
+		this.cputime = cputime;
 	}
 
 	public int getCantBloqueo() {
