@@ -36,6 +36,7 @@ public class AlgoritmoPlanificacion {
 	 private void procesarCola() {
 		//Mientras exista una proceso sin terminar se seguigan ejecutando los procesos.
 		 while(colaListos.size()!=0 || colaBloqueados.size()!=0) { 
+			 
 			 trabajarProcesos();
 		 }
 	 }
@@ -46,7 +47,7 @@ public class AlgoritmoPlanificacion {
 	 private void trabajarProcesos() {
 		 Proceso p = this.primeroColaListos();
 		 //Ejecuto proceso que no llego a consumir el quantum
-		 if(ejecuciones< (quantum + quantumSobrante) && p!=null) {
+		 if(ejecuciones<= (quantum + quantumSobrante) && p!=null) {
 			 if(quantumSobrante>0) {
 				 quantumSobrante -=1;
 			 }
@@ -80,6 +81,7 @@ public class AlgoritmoPlanificacion {
 			 pBloqueado.ejecucionES();
 		 }
 		this.reposicionarProcesos();
+	
 		 
 	 }
 	 

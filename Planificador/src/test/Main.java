@@ -18,7 +18,7 @@ public class Main {
 		lista.add(proceso4);
 		
 		AlgoritmoPlanificacion algoritmo = new AlgoritmoPlanificacion(3,lista);
-		System.out.println(algoritmo.getListaColaListos());
+		//System.out.println(algoritmo.getListaColaListos());
 		System.out.println(algoritmo.getListaColaTerminados());
 	
 		
