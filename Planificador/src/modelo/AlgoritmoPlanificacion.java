@@ -51,17 +51,16 @@ public class AlgoritmoPlanificacion {
 				 quantumSobrante -=1;
 			 }
 			 p.ejecucionProceso();
+			 ejecuciones += 1;
 			 if(p.isBloqueado() || p.isTerminado()) {
 				 //Si al terminar la ejecucion el proceso no llega a consumir todo el quantum, esa diferencia la aprobecha elproximo proceso.
-				 if(ejecuciones < quantum) {
+				 if(ejecuciones < quantum ) {
 					 quantumSobrante += quantum - ejecuciones;
 				 }
 				//Si el proceso termino de ejecutar reinica el quantum
 				 ejecuciones = 0;
 			 }
-			 else {
-				 ejecuciones += 1;
-			 }
+			
 			 
 		 }
 		 //Los procesos que llegan al limite del quantum se agregar al final de la colaListos
