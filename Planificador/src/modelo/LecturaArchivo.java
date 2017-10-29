@@ -2,9 +2,15 @@ package modelo;
 import java.io.*;
 import java.util.*;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
+
 public class LecturaArchivo {
 	
+	static final Logger logResults = Logger.getLogger("resultsLogger");
+	
 	public static List<Proceso> lecturaArchivo() throws Exception {
+		PropertyConfigurator.configure("log4j.properties");
 		FileReader fr= new FileReader("scheduling.conf");
 		BufferedReader br= new BufferedReader(fr);
 		String linea;
@@ -73,6 +79,11 @@ public class LecturaArchivo {
 		}
 		fr.close();
 		br.close();
+		logResults.debug("Planificador 'Round-robin v2.0'");
+		logResults.debug("CPU Time (Global): " + meandev);
+		logResults.debug("***************************************************************");
+		logResults.debug("Procesos por orden de finalizacion");
+		logResults.debug("");
 		return procesos;
 	}
 	
