@@ -15,7 +15,7 @@ public class LecturaArchivo {
 		boolean cargado=false;
 		int procesosintroducidos=0;
 		while((linea=br.readLine())!=null){
-			if(linea.contains("numprocess")){
+			if(linea.contains("-process")){
 				procesosintroducidos++;
 			}
 		}
@@ -31,7 +31,7 @@ public class LecturaArchivo {
 		           }
 		        }
 			}
-			if(numprocess!=procesosintroducidos) throw new Exception("Se cargaro una cantidad diferente de procesos a la cantidad indicada.");
+			if(numprocess!=procesosintroducidos) throw new Exception("Se cargaron una cantidad diferente de procesos a la cantidad indicada.");
 			cargado=false;
 			if(linea.contains("meandev")){
 				while (st.hasMoreTokens() && !cargado){
@@ -43,7 +43,7 @@ public class LecturaArchivo {
 		        }
 			}
 			cargado=false;
-			if(linea.contains("process") && numprocess!=0){
+			if(linea.contains("-process") && numprocess!=0){
 				while (st.hasMoreTokens() && !cargado){
 		           String s2 = st.nextToken();
 		           if(esCadenaNumeros(s2)){
