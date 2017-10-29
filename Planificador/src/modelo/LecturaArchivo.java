@@ -11,7 +11,6 @@ public class LecturaArchivo {
 		int numprocess=0;
 		int meandev=0;
 		int contp=0;
-		//int runtime=0;
 		boolean cargado=false;
 		int procesosintroducidos=0;
 		while((linea=br.readLine())!=null){
@@ -19,19 +18,30 @@ public class LecturaArchivo {
 				procesosintroducidos++;
 			}
 		}
+		fr.close();
+		br.close();
+		fr=new FileReader("scheduling.conf");
+		br=new BufferedReader(fr);
 		int[] timeproceso=new int[procesosintroducidos];
 		while((linea=br.readLine())!=null){
+		StringTokenizer st= new StringTokenizer(linea);
+		if(linea.contains("numprocess")){
+			while (st.hasMoreTokens() && !cargado){
+	           String s2 = st.nextToken();
+	           if(esCadenaNumeros(s2)){
+	        	   numprocess=Integer.valueOf(s2);
+	        	   cargado=true;
+	           }
+	        }
+		}
+		}
+		fr.close();
+		br.close();
+		if(numprocess!=procesosintroducidos) throw new Exception("Se cargaron una cantidad diferente de procesos a la cantidad indicada.");
+		fr=new FileReader("scheduling.conf");
+		br=new BufferedReader(fr);
+		while((linea=br.readLine())!=null){
 			StringTokenizer st= new StringTokenizer(linea);
-			if(linea.contains("numprocess")){
-				while (st.hasMoreTokens() && !cargado){
-		           String s2 = st.nextToken();
-		           if(esCadenaNumeros(s2)){
-		        	   numprocess=Integer.valueOf(s2);
-		        	   cargado=true;
-		           }
-		        }
-			}
-			if(numprocess!=procesosintroducidos) throw new Exception("Se cargaron una cantidad diferente de procesos a la cantidad indicada.");
 			cargado=false;
 			if(linea.contains("meandev")){
 				while (st.hasMoreTokens() && !cargado){
@@ -54,16 +64,6 @@ public class LecturaArchivo {
 		        }
 			}
 			cargado=false;
-			/*if(linea.contains("runtime") && numprocess!=0){
-				while (st.hasMoreTokens() && !cargado){
-		           String s2 = st.nextToken();
-		           if(esCadenaNumeros(s2)){
-		        	   runtime=Integer.valueOf(s2);
-		        	   contp++;
-		        	   cargado=true;
-		           }
-		        }
-			}*/
 		}
 		List<Proceso> procesos=new ArrayList<Proceso>();
 		int i=0;
@@ -71,6 +71,8 @@ public class LecturaArchivo {
 			procesos.add(new Proceso(procesos.size()+1,meandev,timeproceso[i],false,false,false));
 			i++;
 		}
+		fr.close();
+		br.close();
 		return procesos;
 	}
 	
