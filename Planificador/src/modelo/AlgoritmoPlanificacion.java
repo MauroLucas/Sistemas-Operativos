@@ -21,7 +21,7 @@ public class AlgoritmoPlanificacion {
 		 this.colaTerminados = new ArrayList<Proceso>();
 		 this.ejecuciones=0;
 		 this.procesarCola();
-		
+
 	 }
 	 
 	
@@ -36,6 +36,7 @@ public class AlgoritmoPlanificacion {
 	 private void procesarCola() {
 		//Mientras exista una proceso sin terminar se seguigan ejecutando los procesos.
 		 while(colaListos.size()!=0 || colaBloqueados.size()!=0) { 
+			 
 			 trabajarProcesos();
 		 }
 	 }
@@ -43,22 +44,22 @@ public class AlgoritmoPlanificacion {
 	 private void trabajarProcesos() {
 		 Proceso p = this.primeroColaListos();
 		 //Ejecuto proceso que no llego a consumir el quantum
-		 if(ejecuciones < (quantum + quantumSobrante) && p!=null) {
-			 if(quantumSobrante > 0) {
-				 quantumSobrante -= 1;
+		
+		 if(ejecuciones <= (quantum + quantumSobrante) && p!=null) {
+			 if(quantumSobrante>0) {
+				 quantumSobrante -=1;
 			 }
 			 p.ejecucionProceso();
+			 ejecuciones += 1;
 			 if(p.isBloqueado() || p.isTerminado()) {
 				 //Si al terminar la ejecucion el proceso no llega a consumir todo el quantum, esa diferencia la aprobecha elproximo proceso.
-				 if(ejecuciones < quantum) {
-					 quantumSobrante += quantum - ejecuciones;
+				 if(ejecuciones < (quantum + quantumSobrante) ) {
+					 quantumSobrante += (quantum + quantumSobrante) - ejecuciones;
 				 }
 				//Si el proceso termino de ejecutar reinica el quantum
 				 ejecuciones = 0;
 			 }
-			 else {
-				 ejecuciones += 1;
-			 }
+			
 			 
 		 }
 		 //Los procesos que llegan al limite del quantum se agregar al final de la colaListos
@@ -67,8 +68,7 @@ public class AlgoritmoPlanificacion {
 			 if(p!=null) {
 				 ejecuciones=0;
 				 colaListos.remove(p);
-				 colaListos.add(p);
-				 
+				 colaListos.add(p); 
 			 }
 			 
 		 }
@@ -78,6 +78,7 @@ public class AlgoritmoPlanificacion {
 			 pBloqueado.ejecucionES();
 		 }
 		this.reposicionarProcesos();
+	
 		 
 	 }
 	 
