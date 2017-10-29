@@ -16,7 +16,7 @@ public class Main {
 		for(Proceso p: lista){
 			System.out.println(p);
 		}
-		AlgoritmoPlanificacion algoritmo = new AlgoritmoPlanificacion(3,lista);
+		AlgoritmoPlanificacion algoritmo = new AlgoritmoPlanificacion(LecturaArchivo.obtenerQuantum(),lista);
 		System.out.println(algoritmo.getListaColaTerminados());
 		}
 		catch(Exception e){

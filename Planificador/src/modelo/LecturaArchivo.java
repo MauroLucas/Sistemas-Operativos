@@ -24,8 +24,8 @@ public class LecturaArchivo {
 		br=new BufferedReader(fr);
 		int[] timeproceso=new int[procesosintroducidos];
 		while((linea=br.readLine())!=null){
-		StringTokenizer st= new StringTokenizer(linea);
 		if(linea.contains("numprocess")){
+			StringTokenizer st= new StringTokenizer(linea);
 			while (st.hasMoreTokens() && !cargado){
 	           String s2 = st.nextToken();
 	           if(esCadenaNumeros(s2)){
@@ -41,9 +41,9 @@ public class LecturaArchivo {
 		fr=new FileReader("scheduling.conf");
 		br=new BufferedReader(fr);
 		while((linea=br.readLine())!=null){
-			StringTokenizer st= new StringTokenizer(linea);
 			cargado=false;
 			if(linea.contains("meandev")){
+				StringTokenizer st= new StringTokenizer(linea);
 				while (st.hasMoreTokens() && !cargado){
 		           String s2 = st.nextToken();
 		           if(esCadenaNumeros(s2)){
@@ -54,6 +54,7 @@ public class LecturaArchivo {
 			}
 			cargado=false;
 			if(linea.contains("-process") && numprocess!=0){
+				StringTokenizer st= new StringTokenizer(linea);
 				while (st.hasMoreTokens() && !cargado){
 		           String s2 = st.nextToken();
 		           if(esCadenaNumeros(s2)){
@@ -74,6 +75,29 @@ public class LecturaArchivo {
 		fr.close();
 		br.close();
 		return procesos;
+	}
+	
+	public static int obtenerQuantum() throws Exception {
+		int quantum=0;
+		FileReader fr= new FileReader("scheduling.conf");
+		BufferedReader br= new BufferedReader(fr);
+		String linea;
+		boolean cargado=false;
+		while((linea=br.readLine())!=null){
+			if(linea.contains("-quantum")){
+				StringTokenizer st= new StringTokenizer(linea);
+				while (st.hasMoreTokens() && !cargado){
+		           String s2 = st.nextToken();
+		           if(esCadenaNumeros(s2)){
+		        	   quantum=Integer.valueOf(s2);
+		        	   cargado=true;
+		           }
+		        }
+			}
+			}
+		fr.close();
+		br.close();
+		return quantum;
 	}
 	
 	public static boolean esCadenaNumeros(String cadena) {
