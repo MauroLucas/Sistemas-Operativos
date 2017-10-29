@@ -78,28 +78,25 @@ public class Proceso {
 		this.bloqueado=false;
 	}
 	
+	/*Decrementa el cpuTime hasta darse por terminado.
+	 * cantEjecuciones va contando las ejecuciones por turno, asi sabe si se debe bloquear (cuando es igual al ioBlocking)*/
 	public void ejecucionProceso() {
 		this.cpuTime -= 1;
-		this.cantEjecuciones +=1;
-		if(this.cantEjecuciones==this.ioBlocking) {
-			this.cantEjecuciones=0;
-			this.bloqueado=true;
-			
+		this.cantEjecuciones += 1;
+		if(this.cantEjecuciones == this.ioBlocking) {
+			this.cantEjecuciones = 0;
+			this.bloqueado = true;
 		}
-		 if(this.cpuTime==0) {
-		 	 this.bloqueado=false;
-			 this.terminado=true;
+		if(this.cpuTime == 0) {
+		 	 this.bloqueado = false;
+			 this.terminado = true;
 		}
-		
 	}
 
 	@Override
 	public String toString() {
 		return "Proceso [id=" + id + ", cpuTime=" + cpuTime + ", ioBlocking=" + ioBlocking + ", cantEjecuciones="
 				+ cantEjecuciones + ", ejecutando=" + ejecutando + ", bloqueado=" + bloqueado + ", terminado="
-				+ terminado + "]";
+				+ terminado + "]\n";
 	}
-	
-	
-
 }

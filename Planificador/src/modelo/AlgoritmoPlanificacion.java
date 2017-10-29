@@ -12,7 +12,7 @@ public class AlgoritmoPlanificacion {
 	 
 	 
 	 
-	 public AlgoritmoPlanificacion(int quantum,List<Proceso> colaListos) {
+	 public AlgoritmoPlanificacion(int quantum, List<Proceso> colaListos) {
 		 this.quantum = quantum;
 		 this.quantumSobrante = 0;
 		 this.colaListos= new ArrayList<Proceso>(colaListos);
@@ -40,15 +40,12 @@ public class AlgoritmoPlanificacion {
 		 }
 	 }
 	 
-	
-	 
-	 
 	 private void trabajarProcesos() {
 		 Proceso p = this.primeroColaListos();
 		 //Ejecuto proceso que no llego a consumir el quantum
-		 if(ejecuciones< (quantum + quantumSobrante) && p!=null) {
-			 if(quantumSobrante>0) {
-				 quantumSobrante -=1;
+		 if(ejecuciones < (quantum + quantumSobrante) && p!=null) {
+			 if(quantumSobrante > 0) {
+				 quantumSobrante -= 1;
 			 }
 			 p.ejecucionProceso();
 			 if(p.isBloqueado() || p.isTerminado()) {
@@ -121,8 +118,6 @@ public class AlgoritmoPlanificacion {
 		 }
 		 
 		 for(Proceso p : procesosTerminados) {
-			 
-			
 			 colaTerminados.add(p);
 			 colaListos.remove(p);
 		 }
