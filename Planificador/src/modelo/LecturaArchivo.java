@@ -4,14 +4,14 @@ import java.util.*;
 
 public class LecturaArchivo {
 	
-	public static void lecturaArchivo() throws Exception {
+	public static List<Proceso> lecturaArchivo() throws Exception {
 		FileReader fr= new FileReader("scheduling.conf");
 		BufferedReader br= new BufferedReader(fr);
 		String linea;
 		int numprocess=0;
 		int meandev=0;
 		int contp=0;
-		int runtime=0;
+		//int runtime=0;
 		boolean cargado=false;
 		int procesosintroducidos=0;
 		while((linea=br.readLine())!=null){
@@ -19,7 +19,6 @@ public class LecturaArchivo {
 				procesosintroducidos++;
 			}
 		}
-		
 		int[] timeproceso=new int[procesosintroducidos];
 		while((linea=br.readLine())!=null){
 			StringTokenizer st= new StringTokenizer(linea);
@@ -55,7 +54,7 @@ public class LecturaArchivo {
 		        }
 			}
 			cargado=false;
-			if(linea.contains("runtime") && numprocess!=0){
+			/*if(linea.contains("runtime") && numprocess!=0){
 				while (st.hasMoreTokens() && !cargado){
 		           String s2 = st.nextToken();
 		           if(esCadenaNumeros(s2)){
@@ -64,12 +63,15 @@ public class LecturaArchivo {
 		        	   cargado=true;
 		           }
 		        }
-			}
+			}*/
 		}
 		List<Proceso> procesos=new ArrayList<Proceso>();
-		for(int i=0;i<contp;i++){
-			//procesos.add(new Proceso());
+		int i=0;
+		while(i<numprocess){
+			procesos.add(new Proceso(procesos.size()+1,meandev,timeproceso[i],false,false,false));
+			i++;
 		}
+		return procesos;
 	}
 	
 	public static boolean esCadenaNumeros(String cadena) {
