@@ -6,10 +6,10 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		Proceso proceso1 = new Proceso(1,10,5,false,false,false);
-		Proceso proceso2 = new Proceso(2,10,6,false,false,false);
-		Proceso proceso3 = new Proceso(3,10,7,false,false,false);
-		Proceso proceso4 = new Proceso(4,10,8,false,false,false);
+		Proceso proceso1 = new Proceso(1,4,5,false,false,false);
+		Proceso proceso2 = new Proceso(2,4,6,false,false,false);
+		Proceso proceso3 = new Proceso(3,4,7,false,false,false);
+		Proceso proceso4 = new Proceso(4,4,8,false,false,false);
 		
 		List<Proceso> lista = new ArrayList<Proceso>();
 		lista.add(proceso1);

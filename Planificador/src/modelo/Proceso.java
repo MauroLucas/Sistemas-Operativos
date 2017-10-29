@@ -86,8 +86,9 @@ public class Proceso {
 			this.bloqueado=true;
 			
 		}
-		if(this.cpuTime==0) {
-			this.terminado=true;
+		 if(this.cpuTime==0) {
+		 	 this.bloqueado=false;
+			 this.terminado=true;
 		}
 		
 	}

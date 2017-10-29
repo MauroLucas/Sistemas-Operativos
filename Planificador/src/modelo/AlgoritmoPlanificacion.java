@@ -87,7 +87,8 @@ public class AlgoritmoPlanificacion {
 	 //Reposiciono los procesos en sus colas correspondientes
 	 private void reposicionarProcesos() {
 		 
-		//Los procesos que no esten bloqueado en la cola de bloqueados pasan a la cola de listos
+		
+		 //Los procesos que no esten bloqueado en la cola de bloqueados pasan a la cola de listos
 		 List<Proceso> procesosListos = new ArrayList<Proceso>();
 		 for(Proceso p : colaBloqueados) {
 			 if(!p.isBloqueado()) {
@@ -120,6 +121,8 @@ public class AlgoritmoPlanificacion {
 		 }
 		 
 		 for(Proceso p : procesosTerminados) {
+			 
+			
 			 colaTerminados.add(p);
 			 colaListos.remove(p);
 		 }
