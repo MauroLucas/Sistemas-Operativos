@@ -82,6 +82,7 @@ public class LecturaArchivo {
 		br.close();
 		logResults.debug("Planificador 'Round-robin v2.0'");
 		logResults.debug("CPU Time (Global): " + meandev);
+		logResults.debug("Quantum: " + String.valueOf(obtenerQuantum()));
 		logResults.debug("***************************************************************");
 		logResults.debug("Procesos por orden de finalizacion");
 		logResults.debug("");

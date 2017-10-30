@@ -6,6 +6,7 @@ public class Proceso {
 	private int cpuTime;
 	private int ioBlocking;
 	private int cantEjecuciones;
+	private int cantBloqueos;
 	
 	private boolean ejecutando;
 	private boolean bloqueado;
@@ -19,21 +20,20 @@ public class Proceso {
 		this.ejecutando = ejecutando;
 		this.bloqueado = bloqueado;
 		this.terminado = terminado;
-		cantEjecuciones=0;
-		
-		
+		this.cantBloqueos = 0;
+		this.cantEjecuciones = 0;
 	}
-
+	
+	public int getCantBloqueos(){
+		return cantBloqueos;
+	}
+	
 	public int getCputime() {
 		return cpuTime;
 	}
 
 	public void setCputime(int cputime) {
 		this.cpuTime = cputime;
-	}
-
-	public int getCantBloqueo() {
-		return ioBlocking;
 	}
 
 	public void setCantBloqueo(int ioBlocking) {
@@ -68,14 +68,15 @@ public class Proceso {
 		return this.id;
 	}
 	
-	public int getIoBloquing() {
+	public int getIoBlocking() {
 		return this.ioBlocking;
 	}
 	
 	//Al llamar a este metodo se tendra en cuenta que el proceso ejecuta solo una vez procemiento de ES y 
 	//dejara de estar bloqueado
 	public void ejecucionES() {
-		this.bloqueado=false;
+		this.bloqueado = false;
+		this.cantBloqueos += 1;
 	}
 	
 	/*Decrementa el cpuTime hasta darse por terminado.
